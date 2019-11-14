@@ -1,27 +1,33 @@
+from scipy.stats import norm
 
 
 class ConfusionMatrix:
 
-    def __init__(self, x_true, x_false, threshold):
-        self.x_true = x_true
-        self.x_false = x_false
+    def __init__(self, mu_true, sigma_true, mu_false, sigma_false, threshold):
+        self.mu_true = mu_true
+        self.sigma_true = sigma_true
+        self.mu_false = mu_false
+        self.sigma_false = sigma_false
         self.threshold = threshold
+
+        self.norm_true = norm(self.mu_true, self.sigma_true)
+        self.norm_false = norm(self.mu_false, self.sigma_false)
 
     @property
     def TP(self):
-        return self.x_true[self.x_true >= self.threshold].size
+        return 1 - self.norm_true.cdf(self.threshold)
 
     @property
     def TN(self):
-        return self.x_true[self.x_true < self.threshold].size
+        return self.norm_false.cdf(self.threshold)
 
     @property
     def FP(self):
-        return self.x_false[self.x_false < self.threshold].size
+        return 1 - self.norm_false.cdf(self.threshold)
 
     @property
     def FN(self):
-        return self.x_false[self.x_false >= self.threshold].size
+        return self.norm_true.cdf(self.threshold)
 
     @property
     def P(self):

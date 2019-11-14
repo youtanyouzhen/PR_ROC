@@ -4,9 +4,11 @@ from confusion_matrix import ConfusionMatrix
 
 class HistoryData:
 
-    def __init__(self, x_true, x_false, start_thr=0, end_thr=1, num_thr=10):
-        self.x_true = x_true
-        self.x_false = x_false
+    def __init__(self, mu_true, sigma_true, mu_false, sigma_false, start_thr=0, end_thr=1, num_thr=10):
+        self.mu_true = mu_true
+        self.sigma_true = sigma_true
+        self.mu_false = mu_false
+        self.sigma_false = sigma_false
         self.thresholds = np.linspace(start_thr, end_thr, num_thr)
         self._init_data()
 
@@ -20,7 +22,7 @@ class HistoryData:
 
         # 生成数据
         for thr in self.thresholds:
-            cm = ConfusionMatrix(self.x_true, self.x_false, thr)
+            cm = ConfusionMatrix(self.mu_true, self.sigma_true, self.mu_false, self.sigma_false, thr)
             self.Ps.append(cm.P)
             self.Rs.append(cm.R)
             self.TPRs.append(cm.TPR)
