@@ -17,6 +17,7 @@ class HistoryData:
         self.Rs = []
         self.TPRs = []
         self.FPRs = []
+        self.F1s = []
 
     def compute_all_data(self):
 
@@ -27,4 +28,5 @@ class HistoryData:
             self.Rs.append(cm.R)
             self.TPRs.append(cm.TPR)
             self.FPRs.append(cm.FPR)
+            self.F1s.append(cm.F1)
 

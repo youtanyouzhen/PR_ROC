@@ -2,4 +2,6 @@
 ### IntelliJ IDEA ###
 .idea
 __pycache__
+images/*.jpg
+images/*.gif
 
