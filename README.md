@@ -7,3 +7,5 @@ plot_pr_roc_gif()
 # F1
 plot_f1_gif()
 ```
+
+# 输出在image文件夹
