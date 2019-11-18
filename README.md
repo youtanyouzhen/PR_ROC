@@ -8,4 +8,4 @@ plot_pr_roc_gif()
 plot_f1_gif()
 ```
 
-# 输出在image文件夹
+# 输出在images文件夹
